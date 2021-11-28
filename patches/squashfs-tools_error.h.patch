@@ -7,7 +7,7 @@ diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/error.h squashf
  
 -#ifdef SQUASHFS_TRACE
 +// CJH: Updated so that TRACE prints if -verbose is specified on the command line
-+int verbose;
++extern int verbose;
 +//#ifdef SQUASHFS_TRACE
  #define TRACE(s, args...) \
  		do { \

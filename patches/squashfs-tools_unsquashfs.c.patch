@@ -1,7 +1,7 @@
 diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c squashfs-tools-patched/unsquashfs.c
 --- squashfs-tools/unsquashfs.c	2021-04-15 22:58:59.997587732 -0700
 +++ squashfs-tools-patched/unsquashfs.c	2021-04-15 22:49:53.491001565 -0700
-@@ -47,14 +47,21 @@
+@@ -47,14 +47,22 @@
  static long long start_offset = 0;
  
  /* user options that control parallelisation */
@@ -10,6 +10,7 @@ diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c sq
 +// CJH: Temporarily set the default processor count to 1 to prevent threading bug
 +//      until a proper fix is implemented.
 +int processors = 1;
++int verbose;
  
  struct super_block sBlk;
  squashfs_operations *s_ops;
