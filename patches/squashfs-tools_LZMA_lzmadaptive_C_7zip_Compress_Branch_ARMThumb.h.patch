@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.h	2021-04-15 21:24:17.078867347 -0700
+@@ -0,0 +1,10 @@
++// ARMThumb.h
++
++#ifndef __ARMTHUMB_H
++#define __ARMTHUMB_H
++
++#include "BranchCoder.h"
++
++MyClassA(BC_ARMThumb, 0x07, 1)
++
++#endif

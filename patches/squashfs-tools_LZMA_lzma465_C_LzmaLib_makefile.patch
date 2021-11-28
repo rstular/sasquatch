@@ -1,0 +1,41 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzma465/C/LzmaLib/makefile squashfs-tools-patched/LZMA/lzma465/C/LzmaLib/makefile
+--- squashfs-tools/LZMA/lzma465/C/LzmaLib/makefile	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzma465/C/LzmaLib/makefile	2021-04-15 21:24:17.072867254 -0700
+@@ -0,0 +1,37 @@
++MY_STATIC_LINK=1
++SLIB = sLZMA.lib
++PROG = LZMA.dll
++SLIBPATH = $O\$(SLIB)
++
++DEF_FILE = LzmaLib.def
++CFLAGS = $(CFLAGS) \
++  -DCOMPRESS_MF_MT \
++
++LIBS = $(LIBS) oleaut32.lib
++
++LIB_OBJS = \
++  $O\LzmaLibExports.obj \
++
++C_OBJS = \
++  $O\Alloc.obj \
++  $O\LzFind.obj \
++  $O\LzFindMt.obj \
++  $O\LzmaDec.obj \
++  $O\LzmaEnc.obj \
++  $O\LzmaLib.obj \
++  $O\Threads.obj \
++
++OBJS = \
++  $(LIB_OBJS) \
++  $(C_OBJS) \
++  $O\resource.res
++
++!include "../../CPP/Build.mak"
++
++$(SLIBPATH): $O $(OBJS)
++	lib -out:$(SLIBPATH) $(OBJS) $(LIBS)
++
++$(LIB_OBJS): $(*B).c
++	$(COMPL_O2)
++$(C_OBJS): ../$(*B).c
++	$(COMPL_O2)

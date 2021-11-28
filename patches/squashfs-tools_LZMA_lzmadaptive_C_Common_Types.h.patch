@@ -1,0 +1,23 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/Common/Types.h squashfs-tools-patched/LZMA/lzmadaptive/C/Common/Types.h
+--- squashfs-tools/LZMA/lzmadaptive/C/Common/Types.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/Common/Types.h	2021-04-15 21:24:17.091867547 -0700
+@@ -0,0 +1,19 @@
++// Common/Types.h
++
++#ifndef __COMMON_TYPES_H
++#define __COMMON_TYPES_H
++
++typedef unsigned char Byte;
++typedef short Int16;
++typedef unsigned short UInt16;
++typedef int Int32;
++typedef unsigned int UInt32;
++#ifdef _MSC_VER
++typedef __int64 Int64;
++typedef unsigned __int64 UInt64;
++#else
++typedef long long int Int64;
++typedef unsigned long long int UInt64;
++#endif
++
++#endif

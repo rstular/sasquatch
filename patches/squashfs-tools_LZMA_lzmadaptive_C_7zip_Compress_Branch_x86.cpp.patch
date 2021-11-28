@@ -1,0 +1,22 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.cpp squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.cpp
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.cpp	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.cpp	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,18 @@
++// x86.cpp
++
++#include "StdAfx.h"
++#include "x86.h"
++
++#include "Windows/Defs.h"
++
++#include "BranchX86.c"
++
++UInt32 CBCJ_x86_Encoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::x86_Convert(data, size, _bufferPos, &_prevMask, &_prevPos, 1);
++}
++
++UInt32 CBCJ_x86_Decoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::x86_Convert(data, size, _bufferPos, &_prevMask, &_prevPos, 0);
++}

@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/PPC.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/PPC.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/PPC.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/PPC.h	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,10 @@
++// PPC.h
++
++#ifndef __PPC_H
++#define __PPC_H
++
++#include "BranchCoder.h"
++
++MyClassA(BC_PPC_B, 0x02, 5)
++
++#endif

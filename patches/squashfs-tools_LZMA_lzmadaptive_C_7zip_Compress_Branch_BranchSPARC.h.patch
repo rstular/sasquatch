@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchSPARC.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchSPARC.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchSPARC.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchSPARC.h	2021-04-15 21:24:17.079867362 -0700
+@@ -0,0 +1,10 @@
++// BranchSPARC.h
++
++#ifndef __BRANCH_SPARC_H
++#define __BRANCH_SPARC_H
++
++#include "Common/Types.h"
++
++UInt32 SPARC_B_Convert(Byte *data, UInt32 size, UInt32 nowPos, int encoding);
++
++#endif

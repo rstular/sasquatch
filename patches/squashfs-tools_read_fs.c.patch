@@ -1,0 +1,15 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/read_fs.c squashfs-tools-patched/read_fs.c
+--- squashfs-tools/read_fs.c	2021-04-15 22:58:59.995587704 -0700
++++ squashfs-tools-patched/read_fs.c	2021-04-15 21:24:17.095867609 -0700
+@@ -87,8 +87,9 @@
+ 		res = compressor_uncompress(comp, block, buffer, c_byte,
+ 			outlen, &error);
+ 		if(res == -1) {
+-			ERROR("%s uncompress failed with error code %d\n",
+-				comp->name, error);
++            // CJH: Decompression errors are displayed elsewhere
++			//ERROR("%s uncompress failed with error code %d\n",
++			//	comp->name, error);
+ 			return 0;
+ 		}
+ 	} else {

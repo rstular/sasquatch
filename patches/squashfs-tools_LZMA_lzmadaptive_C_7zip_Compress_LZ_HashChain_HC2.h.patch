@@ -1,0 +1,17 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC2.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC2.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC2.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC2.h	2021-04-15 21:24:17.081867393 -0700
+@@ -0,0 +1,13 @@
++// HC2.h
++
++#ifndef __HC2_H
++#define __HC2_H
++
++#undef HC_NAMESPACE
++#define HC_NAMESPACE NHC2
++
++#include "HCMF.h"
++#include "HCMFMain.h"
++
++#endif
++

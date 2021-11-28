@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchARMThumb.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchARMThumb.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchARMThumb.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchARMThumb.h	2021-04-15 21:24:17.079867362 -0700
+@@ -0,0 +1,10 @@
++// BranchARMThumb.h
++
++#ifndef __BRANCH_ARM_THUMB_H
++#define __BRANCH_ARM_THUMB_H
++
++#include "Common/Types.h"
++
++UInt32 ARMThumb_Convert(Byte *data, UInt32 size, UInt32 nowPos, int encoding);
++
++#endif

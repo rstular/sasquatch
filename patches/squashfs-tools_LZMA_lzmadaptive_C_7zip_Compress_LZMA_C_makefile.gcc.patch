@@ -1,0 +1,27 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZMA_C/makefile.gcc squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZMA_C/makefile.gcc
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZMA_C/makefile.gcc	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZMA_C/makefile.gcc	2021-04-15 21:24:17.087867485 -0700
+@@ -0,0 +1,23 @@
++PROG = lzmadec
++CXX = gcc 
++LIB = 
++RM = rm -f
++CFLAGS = -c -O2 -Wall -pedantic -D _LZMA_PROB32 
++
++OBJS = LzmaTest.o LzmaDecode.o 
++
++all: $(PROG)
++
++$(PROG): $(OBJS)
++	$(CXX) -o $(PROG) $(LDFLAGS) $(OBJS) $(LIB)
++
++LzmaTest.o: LzmaTest.c
++	$(CXX) $(CFLAGS) LzmaTest.c
++
++LzmaDecode.o: LzmaDecode.c
++	$(CXX) $(CFLAGS) LzmaDecode.c
++
++
++clean:
++	-$(RM) $(PROG) $(OBJS)
++

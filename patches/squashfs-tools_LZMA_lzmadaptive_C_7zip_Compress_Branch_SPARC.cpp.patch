@@ -1,0 +1,21 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.cpp squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.cpp
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.cpp	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.cpp	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,17 @@
++// SPARC.cpp
++
++#include "StdAfx.h"
++#include "SPARC.h"
++
++#include "Windows/Defs.h"
++#include "BranchSPARC.c"
++
++UInt32 CBC_SPARC_Encoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::SPARC_Convert(data, size, _bufferPos, 1);
++}
++
++UInt32 CBC_SPARC_Decoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::SPARC_Convert(data, size, _bufferPos, 0);
++}

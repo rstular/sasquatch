@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/SPARC.h	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,10 @@
++// SPARC.h
++
++#ifndef __SPARC_H
++#define __SPARC_H
++
++#include "BranchCoder.h"
++
++MyClassA(BC_SPARC, 0x08, 5)
++
++#endif

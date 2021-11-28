@@ -1,0 +1,6 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/README.md squashfs-tools-patched/README.md
+--- squashfs-tools/README.md	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/README.md	2021-04-15 21:24:17.095867609 -0700
+@@ -0,0 +1,2 @@
++This is the raw, patched source code for squashfs-tools. It is included in this repository for documentation and administrative purposes only. Any bugs or patches not directly related to the modifications made by the sasquatch patches should be reported to the squashfs-tools project.
++

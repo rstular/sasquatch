@@ -1,0 +1,17 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzma465/C/Archive/7z/7zDecode.h squashfs-tools-patched/LZMA/lzma465/C/Archive/7z/7zDecode.h
+--- squashfs-tools/LZMA/lzma465/C/Archive/7z/7zDecode.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzma465/C/Archive/7z/7zDecode.h	2021-04-15 21:24:17.068867192 -0700
+@@ -0,0 +1,13 @@
++/* 7zDecode.h -- Decoding from 7z folder
++2008-11-23 : Igor Pavlov : Public domain */
++
++#ifndef __7Z_DECODE_H
++#define __7Z_DECODE_H
++
++#include "7zItem.h"
++
++SRes SzDecode(const UInt64 *packSizes, const CSzFolder *folder,
++    ILookInStream *stream, UInt64 startPos,
++    Byte *outBuffer, size_t outSize, ISzAlloc *allocMain);
++
++#endif

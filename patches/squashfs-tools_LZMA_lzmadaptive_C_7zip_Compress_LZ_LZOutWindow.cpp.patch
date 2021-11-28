@@ -1,0 +1,21 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/LZOutWindow.cpp squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/LZOutWindow.cpp
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/LZOutWindow.cpp	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/LZOutWindow.cpp	2021-04-15 21:24:17.082867408 -0700
+@@ -0,0 +1,17 @@
++// LZOutWindow.cpp
++
++#include "StdAfx.h"
++
++#include "../../../Common/Alloc.h"
++#include "LZOutWindow.h"
++
++void CLZOutWindow::Init(bool solid)
++{
++  if(!solid)
++    COutBuffer::Init();
++  #ifdef _NO_EXCEPTIONS
++  ErrorCode = S_OK;
++  #endif
++}
++
++

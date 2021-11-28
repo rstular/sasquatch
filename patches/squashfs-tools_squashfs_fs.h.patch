@@ -1,0 +1,48 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/squashfs_fs.h squashfs-tools-patched/squashfs_fs.h
+--- squashfs-tools/squashfs_fs.h	2021-04-15 22:58:59.996587718 -0700
++++ squashfs-tools-patched/squashfs_fs.h	2021-04-15 21:27:23.483719397 -0700
+@@ -285,6 +285,22 @@
+ #define XZ_COMPRESSION		4
+ #define LZ4_COMPRESSION		5
+ #define ZSTD_COMPRESSION	6
++// CJH: Added #defines for additional decompressors
++#define LZMA_WRT_COMPRESSION        7
++#define LZMA_ADAPTIVE_COMPRESSION   8
++#define LZMA_ALT_COMPRESSION        9
++
++// CJH: A generic super block structure used for auto-detecting endianess
++#include <stdint.h>
++#define SQUASHFS_MIN_VERSION 1
++#define SQUASHFS_MAX_VERSION 4
++struct squashfs_generic_super_block {
++    uint32_t s_magic;
++    uint32_t inodes;
++    uint8_t  filler[20];
++    uint16_t s_major;
++    uint16_t s_minor;
++} __attribute__ ((packed));
+ 
+ struct squashfs_super_block {
+ 	unsigned int		s_magic;
+@@ -496,4 +512,21 @@
+ 	unsigned int		unused;
+ };
+ 
++// CJH: Override structures (see usage)
++struct lzma_override_property
++{
++    int set;
++    int value;
++};
++struct override_table
++{
++    int s_major;
++    int s_minor;
++    struct lzma_override_property lc;
++    struct lzma_override_property lp;
++    struct lzma_override_property pb;
++    struct lzma_override_property dictionary_size;
++    struct lzma_override_property offset;
++};
++
+ #endif

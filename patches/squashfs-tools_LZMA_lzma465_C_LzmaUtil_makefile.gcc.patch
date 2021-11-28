@@ -1,0 +1,48 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzma465/C/LzmaUtil/makefile.gcc squashfs-tools-patched/LZMA/lzma465/C/LzmaUtil/makefile.gcc
+--- squashfs-tools/LZMA/lzma465/C/LzmaUtil/makefile.gcc	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzma465/C/LzmaUtil/makefile.gcc	2021-04-15 21:24:17.073867269 -0700
+@@ -0,0 +1,44 @@
++PROG = lzma
++CXX = g++
++LIB =
++RM = rm -f
++CFLAGS = -c -O2 -Wall
++
++OBJS = \
++  LzmaUtil.o \
++  Alloc.o \
++  LzFind.o \
++  LzmaDec.o \
++  LzmaEnc.o \
++  7zFile.o \
++  7zStream.o \
++
++
++all: $(PROG)
++
++$(PROG): $(OBJS)
++	$(CXX) -o $(PROG) $(LDFLAGS) $(OBJS) $(LIB) $(LIB2)
++
++LzmaUtil.o: LzmaUtil.c
++	$(CXX) $(CFLAGS) LzmaUtil.c
++
++Alloc.o: ../Alloc.c
++	$(CXX) $(CFLAGS) ../Alloc.c
++
++LzFind.o: ../LzFind.c
++	$(CXX) $(CFLAGS) ../LzFind.c
++
++LzmaDec.o: ../LzmaDec.c
++	$(CXX) $(CFLAGS) ../LzmaDec.c
++
++LzmaEnc.o: ../LzmaEnc.c
++	$(CXX) $(CFLAGS) ../LzmaEnc.c
++
++7zFile.o: ../7zFile.c
++	$(CXX) $(CFLAGS) ../7zFile.c
++
++7zStream.o: ../7zStream.c
++	$(CXX) $(CFLAGS) ../7zStream.c
++
++clean:
++	-$(RM) $(PROG) $(OBJS)

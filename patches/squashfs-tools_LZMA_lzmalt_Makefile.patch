@@ -1,0 +1,14 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmalt/Makefile squashfs-tools-patched/LZMA/lzmalt/Makefile
+--- squashfs-tools/LZMA/lzmalt/Makefile	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmalt/Makefile	2021-04-15 21:24:17.094867593 -0700
+@@ -0,0 +1,10 @@
++INCLUDEDIR = .
++
++CC=gcc
++
++CFLAGS := -I$(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -O2
++
++all:7zlzma.o  IInOutStreams.o  LZMADecoder.o
++
++clean :
++	rm -f *.o

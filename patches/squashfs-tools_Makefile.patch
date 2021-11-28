@@ -1,0 +1,138 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/Makefile squashfs-tools-patched/Makefile
+--- squashfs-tools/Makefile	2021-04-15 22:58:59.992587662 -0700
++++ squashfs-tools-patched/Makefile	2021-04-15 21:26:13.529653924 -0700
+@@ -30,7 +30,7 @@
+ # To build install the library and uncomment
+ # the XZ_SUPPORT line below.
+ #
+-#XZ_SUPPORT = 1
++XZ_SUPPORT = 1
+ 
+ 
+ ############ Building LZO support ##############
+@@ -44,7 +44,7 @@
+ # To build install the library and uncomment
+ # the XZ_SUPPORT line below.
+ #
+-#LZO_SUPPORT = 1
++LZO_SUPPORT = 1
+ 
+ 
+ ########### Building LZ4 support #############
+@@ -141,8 +141,13 @@
+ # and uncomment the LZMA_SUPPORT line below.
+ #
+ #LZMA_XZ_SUPPORT = 1
+-#LZMA_SUPPORT = 1
+-#LZMA_DIR = ../../../../LZMA/lzma465
++LZMA_SUPPORT = 1
++# CJH: Added LZMA_BASE_DIR
++LZMA_BASE_DIR = ./LZMA
++LZMA_DIR = $(LZMA_BASE_DIR)/lzma465
++# CJH: Added these too...
++LZMA_ALT_DIR = $(LZMA_BASE_DIR)/lzmalt
++LZMA_ADAPT_DIR = $(LZMA_BASE_DIR)/lzmadaptive/C/7zip/Compress/LZMA_Lib
+ 
+ ###############################################
+ #        End of BUILD options section         #
+@@ -158,10 +163,11 @@
+ UNSQUASHFS_OBJS = unsquashfs.o unsquash-1.o unsquash-2.o unsquash-3.o \
+ 	unsquash-4.o unsquash-123.o unsquash-34.o swap.o compressor.o unsquashfs_info.o
+ 
+-CFLAGS ?= -O2
++# CJH: Added -g, -Werror and -DSQUASHFS_TRACE
++CFLAGS ?= -g -O2
+ CFLAGS += $(EXTRA_CFLAGS) $(INCLUDEDIR) -D_FILE_OFFSET_BITS=64 \
+ 	-D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"$(COMP_DEFAULT)\" \
+-	-Wall
++	-Wall -Werror #-DSQUASHFS_TRACE
+ 
+ LIBS = -lpthread -lm
+ ifeq ($(GZIP_SUPPORT),1)
+@@ -173,13 +179,18 @@
+ endif
+ 
+ ifeq ($(LZMA_SUPPORT),1)
++# CJH: Added -llzmalib
++LIBS += -L$(LZMA_ADAPT_DIR) -llzmalib 
+ LZMA_OBJS = $(LZMA_DIR)/C/Alloc.o $(LZMA_DIR)/C/LzFind.o \
+ 	$(LZMA_DIR)/C/LzmaDec.o $(LZMA_DIR)/C/LzmaEnc.o $(LZMA_DIR)/C/LzmaLib.o
+-INCLUDEDIR += -I$(LZMA_DIR)/C
++# CJH: Added LZMA variant directories
++INCLUDEDIR += -I$(LZMA_DIR)/C -I$(LZMA_ALT_DIR) -I$(LZMA_ADAPT_DIR)
+ CFLAGS += -DLZMA_SUPPORT
+ MKSQUASHFS_OBJS += lzma_wrapper.o $(LZMA_OBJS)
+ UNSQUASHFS_OBJS += lzma_wrapper.o $(LZMA_OBJS)
+ COMPRESSORS += lzma
++# CJH: Added LZMA_EXTRA_OBJS
++LZMA_EXTRA_OBJS = $(LZMA_ALT_DIR)/*.o
+ endif
+ 
+ ifeq ($(LZMA_XZ_SUPPORT),1)
+@@ -278,10 +289,12 @@
+ endif
+ 
+ .PHONY: all
+-all: mksquashfs unsquashfs
++# CJH: Made sasquatch the default target
++all: sasquatch 
+ 
++# CJH: Added LZMA_EXTRA_OBJS
+ mksquashfs: $(MKSQUASHFS_OBJS)
+-	$(CC) $(LDFLAGS) $(EXTRA_LDFLAGS) $(MKSQUASHFS_OBJS) $(LIBS) -o $@
++	$(CC) $(LDFLAGS) $(EXTRA_LDFLAGS) $(LZMA_EXTRA_OBJS) $(MKSQUASHFS_OBJS) $(LIBS) -o $@
+ 
+ mksquashfs.o: Makefile mksquashfs.c squashfs_fs.h squashfs_swap.h mksquashfs.h \
+ 	sort.h pseudo.h compressor.h xattr.h action.h error.h progressbar.h \
+@@ -321,7 +334,8 @@
+ 
+ gzip_wrapper.o: gzip_wrapper.c squashfs_fs.h gzip_wrapper.h compressor.h
+ 
+-lzma_wrapper.o: lzma_wrapper.c compressor.h squashfs_fs.h
++# CJH: Added lzmalt, lzmadaptive
++lzma_wrapper.o: lzma_wrapper.c compressor.h squashfs_fs.h lzmalt lzmadaptive
+ 
+ lzma_xz_wrapper.o: lzma_xz_wrapper.c compressor.h squashfs_fs.h
+ 
+@@ -331,8 +345,13 @@
+ 
+ xz_wrapper.o: xz_wrapper.c squashfs_fs.h xz_wrapper.h compressor.h
+ 
++# CJH: Added LZMA_EXTRA_OBJS
+ unsquashfs: $(UNSQUASHFS_OBJS)
+-	$(CC) $(LDFLAGS) $(EXTRA_LDFLAGS) $(UNSQUASHFS_OBJS) $(LIBS) -o $@
++	$(CC) $(LDFLAGS) $(EXTRA_LDFLAGS) $(UNSQUASHFS_OBJS) $(LZMA_EXTRA_OBJS) $(LIBS) -o $@
++
++# CJH: Added sasquatch target
++sasquatch: $(UNSQUASHFS_OBJS)
++	$(CXX) $(LDFLAGS) $(EXTRA_LDFLAGS) $(LZMA_EXTRA_OBJS) $(UNSQUASHFS_OBJS) $(LIBS) -o $@
+ 
+ unsquashfs.o: unsquashfs.h unsquashfs.c squashfs_fs.h squashfs_swap.h \
+ 	squashfs_compat.h xattr.h read_fs.h compressor.h
+@@ -354,12 +373,22 @@
+ 
+ unsquashfs_info.o: unsquashfs.h squashfs_fs.h
+ 
++# CJH: Added lzmalt, lzmadaptive
++.PHONY: lzmalt lzmadaptive
++lzmalt:
++	make -C $(LZMA_ALT_DIR)
++lzmadaptive:
++	make -C $(LZMA_ADAPT_DIR)
++
++# CJH: Added lzmalt, lzmadaptive
+ .PHONY: clean
+ clean:
+-	-rm -f *.o mksquashfs unsquashfs
++	-rm -f *.o $(LZMA_OBJS) mksquashfs unsquashfs sasquatch
++	make -C $(LZMA_ADAPT_DIR) clean
++	make -C $(LZMA_ALT_DIR) clean
+ 
++# CJH: Added cp sasquatch
+ .PHONY: install
+-install: mksquashfs unsquashfs
++install: sasquatch
+ 	mkdir -p $(INSTALL_DIR)
+-	cp mksquashfs $(INSTALL_DIR)
+-	cp unsquashfs $(INSTALL_DIR)
++	cp sasquatch $(INSTALL_DIR)

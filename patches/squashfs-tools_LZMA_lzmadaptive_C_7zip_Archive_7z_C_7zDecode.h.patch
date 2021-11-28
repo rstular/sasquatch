@@ -1,0 +1,25 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zDecode.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zDecode.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zDecode.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zDecode.h	2021-04-15 21:24:17.075867300 -0700
+@@ -0,0 +1,21 @@
++/* 7zDecode.h */
++
++#ifndef __7Z_DECODE_H
++#define __7Z_DECODE_H
++
++#include "7zItem.h"
++#include "7zAlloc.h"
++#ifdef _LZMA_IN_CB
++#include "7zIn.h"
++#endif
++
++SZ_RESULT SzDecode(const CFileSize *packSizes, const CFolder *folder,
++    #ifdef _LZMA_IN_CB
++    ISzInStream *stream,
++    #else
++    const Byte *inBuffer,
++    #endif
++    Byte *outBuffer, size_t outSize, 
++    size_t *outSizeProcessed, ISzAlloc *allocMain);
++
++#endif

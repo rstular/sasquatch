@@ -1,0 +1,20 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/BinTree/BinTree3.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/BinTree/BinTree3.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/BinTree/BinTree3.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/BinTree/BinTree3.h	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,16 @@
++// BinTree3.h
++
++#ifndef __BINTREE3_H
++#define __BINTREE3_H
++
++#undef BT_NAMESPACE
++#define BT_NAMESPACE NBT3
++
++#define HASH_ARRAY_2
++
++#include "BinTree.h"
++#include "BinTreeMain.h"
++
++#undef HASH_ARRAY_2
++
++#endif

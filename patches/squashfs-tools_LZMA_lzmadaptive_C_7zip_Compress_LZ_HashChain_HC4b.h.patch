@@ -1,0 +1,25 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC4b.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC4b.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC4b.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/HashChain/HC4b.h	2021-04-15 21:24:17.081867393 -0700
+@@ -0,0 +1,21 @@
++// HC4b.h
++
++#ifndef __HC4B__H
++#define __HC4B__H
++
++#undef HC_NAMESPACE
++#define HC_NAMESPACE NHC4b
++
++#define HASH_ARRAY_2
++#define HASH_ARRAY_3
++#define HASH_BIG
++
++#include "HC.h"
++#include "HCMain.h"
++
++#undef HASH_ARRAY_2
++#undef HASH_ARRAY_3
++#undef HASH_BIG
++
++#endif
++

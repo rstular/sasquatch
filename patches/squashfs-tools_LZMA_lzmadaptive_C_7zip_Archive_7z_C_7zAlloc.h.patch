@@ -1,0 +1,24 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zAlloc.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zAlloc.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zAlloc.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zAlloc.h	2021-04-15 21:24:17.075867300 -0700
+@@ -0,0 +1,20 @@
++/* 7zAlloc.h */
++
++#ifndef __7Z_ALLOC_H
++#define __7Z_ALLOC_H
++
++#include <stddef.h>
++
++typedef struct _ISzAlloc
++{
++  void *(*Alloc)(size_t size);
++  void (*Free)(void *address); /* address can be 0 */
++} ISzAlloc;
++
++void *SzAlloc(size_t size);
++void SzFree(void *address);
++
++void *SzAllocTemp(size_t size);
++void SzFreeTemp(void *address);
++
++#endif

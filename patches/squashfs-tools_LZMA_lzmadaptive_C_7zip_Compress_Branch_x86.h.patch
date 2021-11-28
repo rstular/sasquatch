@@ -1,0 +1,23 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/x86.h	2021-04-15 21:24:17.080867378 -0700
+@@ -0,0 +1,19 @@
++// x86.h
++
++#ifndef __X86_H
++#define __X86_H
++
++#include "BranchCoder.h"
++#include "BranchX86.h"
++
++struct CBranch86
++{
++  UInt32 _prevMask;
++  UInt32 _prevPos;
++  void x86Init() { x86_Convert_Init(_prevMask, _prevPos); }
++};
++
++MyClassB(BCJ_x86, 0x01, 3, CBranch86 , 
++    virtual void SubInit() { x86Init(); })
++
++#endif

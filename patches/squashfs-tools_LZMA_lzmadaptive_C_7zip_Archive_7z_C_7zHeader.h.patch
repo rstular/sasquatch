@@ -1,0 +1,59 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zHeader.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zHeader.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zHeader.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7zHeader.h	2021-04-15 21:24:17.076867316 -0700
+@@ -0,0 +1,55 @@
++/* 7zHeader.h */
++
++#ifndef __7Z_HEADER_H
++#define __7Z_HEADER_H
++
++#include "7zTypes.h"
++
++#define k7zSignatureSize 6
++extern Byte k7zSignature[k7zSignatureSize];
++
++#define k7zMajorVersion 0
++
++#define k7zStartHeaderSize 0x20
++
++enum EIdEnum
++{
++  k7zIdEnd,
++    
++  k7zIdHeader,
++    
++  k7zIdArchiveProperties,
++    
++  k7zIdAdditionalStreamsInfo,
++  k7zIdMainStreamsInfo,
++  k7zIdFilesInfo,
++  
++  k7zIdPackInfo,
++  k7zIdUnPackInfo,
++  k7zIdSubStreamsInfo,
++  
++  k7zIdSize,
++  k7zIdCRC,
++  
++  k7zIdFolder,
++  
++  k7zIdCodersUnPackSize,
++  k7zIdNumUnPackStream,
++  
++  k7zIdEmptyStream,
++  k7zIdEmptyFile,
++  k7zIdAnti,
++  
++  k7zIdName,
++  k7zIdCreationTime,
++  k7zIdLastAccessTime,
++  k7zIdLastWriteTime,
++  k7zIdWinAttributes,
++  k7zIdComment,
++  
++  k7zIdEncodedHeader,
++  
++  k7zIdStartPos
++};
++
++#endif

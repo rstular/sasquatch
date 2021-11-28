@@ -1,0 +1,24 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat2R.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat2R.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat2R.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat2R.h	2021-04-15 21:24:17.082867408 -0700
+@@ -0,0 +1,20 @@
++// Pat2R.h
++
++#ifndef __PAT2R__H
++#define __PAT2R__H
++
++#undef PAT_CLSID
++#define PAT_CLSID CLSID_CMatchFinderPat2R
++
++#undef PAT_NAMESPACE
++#define PAT_NAMESPACE NPat2R
++
++#define __NODE_2_BITS
++
++#include "Pat.h"
++#include "PatMain.h"
++
++#undef  __NODE_2_BITS
++
++#endif
++

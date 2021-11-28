@@ -1,0 +1,33 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7z_C.dsw squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7z_C.dsw
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7z_C.dsw	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Archive/7z_C/7z_C.dsw	2021-04-15 21:24:17.075867300 -0700
+@@ -0,0 +1,29 @@
++Microsoft Developer Studio Workspace File, Format Version 6.00
++# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
++
++###############################################################################
++
++Project: "7z_C"=.\7z_C.dsp - Package Owner=<4>
++
++Package=<5>
++{{{
++}}}
++
++Package=<4>
++{{{
++}}}
++
++###############################################################################
++
++Global:
++
++Package=<5>
++{{{
++}}}
++
++Package=<3>
++{{{
++}}}
++
++###############################################################################
++

@@ -1,0 +1,20 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.cpp squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.cpp
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.cpp	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/ARMThumb.cpp	2021-04-15 21:24:17.078867347 -0700
+@@ -0,0 +1,16 @@
++// ARMThumb.cpp
++
++#include "StdAfx.h"
++#include "ARMThumb.h"
++
++#include "BranchARMThumb.c"
++
++UInt32 CBC_ARMThumb_Encoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::ARMThumb_Convert(data, size, _bufferPos, 1);
++}
++
++UInt32 CBC_ARMThumb_Decoder::SubFilter(Byte *data, UInt32 size)
++{
++  return ::ARMThumb_Convert(data, size, _bufferPos, 0);
++}

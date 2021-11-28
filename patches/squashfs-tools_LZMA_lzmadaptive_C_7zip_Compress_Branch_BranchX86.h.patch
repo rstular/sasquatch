@@ -1,0 +1,23 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchX86.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchX86.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchX86.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/Branch/BranchX86.h	2021-04-15 21:24:17.079867362 -0700
+@@ -0,0 +1,19 @@
++/* BranchX86.h */
++
++#ifndef __BRANCHX86_H
++#define __BRANCHX86_H
++
++#ifndef UInt32
++#define UInt32 unsigned int
++#endif
++
++#ifndef Byte
++#define Byte unsigned char
++#endif
++
++#define x86_Convert_Init(prevMask, prevPos) { prevMask = 0; prevPos = (UInt32)(-5); }
++
++UInt32 x86_Convert(Byte *buffer, UInt32 endPos, UInt32 nowPos, 
++    UInt32 *prevMask, UInt32 *prevPos, int encoding);
++
++#endif

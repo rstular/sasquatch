@@ -1,0 +1,22 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/Windows/Defs.h squashfs-tools-patched/LZMA/lzmadaptive/C/Windows/Defs.h
+--- squashfs-tools/LZMA/lzmadaptive/C/Windows/Defs.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/Windows/Defs.h	2021-04-15 21:24:17.091867547 -0700
+@@ -0,0 +1,18 @@
++// Windows/Defs.h
++
++#ifndef __WINDOWS_DEFS_H
++#define __WINDOWS_DEFS_H
++
++inline bool BOOLToBool(BOOL value)
++  { return (value != FALSE); }
++
++inline BOOL BoolToBOOL(bool value)
++  { return (value ? TRUE: FALSE); }
++
++inline VARIANT_BOOL BoolToVARIANT_BOOL(bool value)
++  { return (value ? VARIANT_TRUE: VARIANT_FALSE); }
++
++inline bool VARIANT_BOOLToBool(VARIANT_BOOL value)
++  { return (value != VARIANT_FALSE); }
++
++#endif

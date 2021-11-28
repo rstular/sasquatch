@@ -1,0 +1,18 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/compressor.h squashfs-tools-patched/compressor.h
+--- squashfs-tools/compressor.h	2021-04-15 22:58:59.993587676 -0700
++++ squashfs-tools-patched/compressor.h	2021-04-15 21:24:17.065867146 -0700
+@@ -59,11 +59,14 @@
+ }
+ 
+ 
++/* CJH: Needed more logic for compression auto-detection, no longer inlined
+ static inline int compressor_uncompress(struct compressor *comp, void *dest,
+ 	void *src, int size, int block_size, int *error)
+ {
+ 	return comp->uncompress(dest, src, size, block_size, error);
+ }
++*/
++int compressor_uncompress(struct compressor *comp, void *dest, void *src, int size, int block_size, int *error);
+ 
+ 
+ /*

@@ -1,0 +1,13 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/Common/StdAfx.h squashfs-tools-patched/LZMA/lzmadaptive/C/Common/StdAfx.h
+--- squashfs-tools/LZMA/lzmadaptive/C/Common/StdAfx.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/Common/StdAfx.h	2021-04-15 21:24:17.090867532 -0700
+@@ -0,0 +1,9 @@
++// StdAfx.h
++
++#ifndef __STDAFX_H
++#define __STDAFX_H
++
++// #include "MyWindows.h"
++#include "NewHandler.h"
++
++#endif 

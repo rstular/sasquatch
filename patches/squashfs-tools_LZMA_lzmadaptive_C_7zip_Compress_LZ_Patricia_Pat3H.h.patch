@@ -1,0 +1,28 @@
+diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat3H.h squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat3H.h
+--- squashfs-tools/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat3H.h	1969-12-31 16:00:00.000000000 -0800
++++ squashfs-tools-patched/LZMA/lzmadaptive/C/7zip/Compress/LZ/Patricia/Pat3H.h	2021-04-15 21:24:17.082867408 -0700
+@@ -0,0 +1,24 @@
++// Pat3H.h
++
++#ifndef __PAT3H__H
++#define __PAT3H__H
++
++#undef PAT_CLSID
++#define PAT_CLSID CLSID_CMatchFinderPat3H
++
++#undef PAT_NAMESPACE
++#define PAT_NAMESPACE NPat3H
++
++#define __AUTO_REMOVE
++#define __NODE_3_BITS
++#define __HASH_3
++
++#include "Pat.h"
++#include "PatMain.h"
++
++#undef __AUTO_REMOVE
++#undef __NODE_3_BITS
++#undef __HASH_3
++
++#endif
++
