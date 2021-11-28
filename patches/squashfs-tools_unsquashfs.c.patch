@@ -121,7 +121,7 @@ diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c sq
  	}
  
  	/*
-@@ -1851,24 +1865,85 @@
+@@ -1851,24 +1865,87 @@
  {
  	squashfs_super_block_3 sBlk_3;
  	struct squashfs_super_block sBlk_4;
@@ -166,7 +166,9 @@ diff '--exclude=.git' --strip-trailing-cr -NBbaur squashfs-tools/unsquashfs.c sq
 +
 +    // CJH: Notify if endianess is different
 +    if(swap)
++    {
 +        ERROR("Reading a different endian SQUASHFS filesystem on %s\n", source);
++    }
  
  	/*
  	 * Try to read a Squashfs 4 superblock
