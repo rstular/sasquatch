@@ -1,7 +1,7 @@
 Squashfs-Tools Version
 ======================
 
-The patches contained in this directory were built against squashfs tools v4.3, available on [Sourceforge](http://sourceforge.net/projects/squashfs/files/).
+The patches contained in this directory were built against squashfs tools v4.4, available on [Sourceforge](http://sourceforge.net/projects/squashfs/files/).
 
 Modified Files
 ==============
